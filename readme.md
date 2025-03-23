@@ -90,7 +90,7 @@ BetterMetro respects user privacy:
 - No analytics tracking is implemented
 - No data is shared with third parties
 
-For more details, please see our [Privacy Policy](PRIVACY.md).
+For more details, please see our [Privacy Policy](privacy.md).
 
 ## Acknowledgments
 
