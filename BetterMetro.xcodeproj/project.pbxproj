@@ -29,9 +29,30 @@
 		33CDE9882D90AD900016CE34 /* BetterMetroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterMetroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		33CDE9FC2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 33CDE97D2D90AD900016CE34 /* BetterMetroTests */;
+		};
+		33CDE9FD2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"GoogleService-Info.plist",
+			);
+			target = 33CDE9872D90AD900016CE34 /* BetterMetroUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		33CDE9702D90AD8D0016CE34 /* BetterMetro */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				33CDE9FC2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroTests" target */,
+				33CDE9FD2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroUITests" target */,
+			);
 			path = BetterMetro;
 			sourceTree = "<group>";
 		};
@@ -196,6 +217,9 @@
 			);
 			mainGroup = 33CDE9652D90AD8D0016CE34;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				33CDE9FE2D90CCE20016CE34 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 33CDE96F2D90AD8D0016CE34 /* Products */;
 			projectDirPath = "";
@@ -405,6 +429,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -437,6 +462,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -564,6 +590,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		33CDE9FE2D90CCE20016CE34 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 33CDE9662D90AD8D0016CE34 /* Project object */;
 }
