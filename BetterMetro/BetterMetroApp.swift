@@ -10,58 +10,38 @@
 
 import SwiftUI
 import BackgroundTasks
+import Firebase
 
 @main
 struct BetterMetroApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var notificationManager = NotificationManager.shared
     
     var body: some Scene {
         WindowGroup {
             MainView()
                 .onAppear {
                     // Request notification permissions when app first launches
-                    notificationManager.registerForServices()
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+                        if granted {
+                            print("Notification authorization granted")
+                        } else if let error = error {
+                            print("Failed to request notification authorization: \(error.localizedDescription)")
+                        }
+                    }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                     // Refresh disruptions when app becomes active
-                    notificationManager.refreshDisruptionsFromForeground()
+                    DisruptionManager.shared.refreshDisruptionsFromForeground()
+                }
+                // Listen for notification to open disruption detail
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name("OpenDisruptionDetail"))) { notification in
+                    if let disruptionId = notification.userInfo?["disruptionId"] as? String,
+                       let id = Int(disruptionId) {
+                        // Handle navigation to disruption detail
+                        // This would need to be connected to your navigation state
+                        print("Should navigate to disruption ID: \(id)")
+                    }
                 }
         }
-    }
-}
-
-// App Delegate to handle background tasks
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        // Register for background tasks
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.bettermetro.refreshDisruptions", using: nil) { task in
-            self.handleAppRefresh(task: task as! BGAppRefreshTask)
-        }
-        
-        return true
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Convert token to string
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
-        
-        // In a real app, you would send this token to your server
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register for remote notifications: \(error.localizedDescription)")
-    }
-    
-    func handleAppRefresh(task: BGAppRefreshTask) {
-        // Forward to the notification manager
-        NotificationManager.shared.checkForNewDisruptions { success in
-            task.setTaskCompleted(success: success)
-        }
-        
-        // Schedule next refresh
-        NotificationManager.shared.scheduleBackgroundRefresh()
     }
 }

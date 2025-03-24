@@ -11,7 +11,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject private var notificationManager = NotificationManager.shared
+    @State private var isNotificationsAuthorized = false
+    @State private var isSubscribedToTopics = false
     
     var body: some View {
         ZStack {
@@ -28,46 +29,104 @@ struct SettingsView: View {
                     VStack(spacing: 16) {
                         // Notifications section
                         SettingsSection(title: "Notifications", icon: "bell.fill") {
-                            Toggle("Enable Push Notifications", isOn: $notificationManager.isAuthorized)
-                                .onChange(of: notificationManager.isAuthorized) { oldValue, newValue in
+                            Toggle("Enable Notifications", isOn: $isNotificationsAuthorized)
+                                .onChange(of: isNotificationsAuthorized) { oldValue, newValue in
                                     if newValue {
-                                        notificationManager.requestNotificationAuthorization()
+                                        requestNotificationPermission()
                                     } else {
                                         // Redirect to system settings if they want to disable
-                                        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
-                                            return
-                                        }
-                                        UIApplication.shared.open(settingsURL)
+                                        openAppSettings()
                                     }
                                 }
+                            
+                            Toggle("Subscribe to Metro Updates", isOn: $isSubscribedToTopics)
+                                .onChange(of: isSubscribedToTopics) { oldValue, newValue in
+                                    if newValue {
+                                        DisruptionManager.shared.subscribeToTopics()
+                                    } else {
+                                        DisruptionManager.shared.unsubscribeFromTopics()
+                                    }
+                                }
+                                .disabled(!isNotificationsAuthorized)
                         }
                         
                         // App information section
                         SettingsSection(title: "About", icon: "info.circle.fill") {
-                            InfoRow(title: "Version", value: "0.1.2")
-                            InfoRow(title: "Build", value: "1")
-                            InfoRow(title: "Developer", value: "BetterMetro")
+                            InfoRow(title: "Version", value: "1.0.0")
+                            InfoRow(title: "Build", value: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1")
+                            InfoRow(title: "Community Project", value: "Not affiliated with Nexus")
                         }
                         
                         // Support section
                         SettingsSection(title: "Support", icon: "questionmark.circle.fill") {
-                            NavigationLink(destination: Text("Privacy Policy")) {
+                            Button(action: {
+                                // Open Privacy Policy
+                                if let url = URL(string: "https://example.com/privacy") {
+                                    UIApplication.shared.open(url)
+                                }
+                            }) {
                                 SettingsRow(title: "Privacy Policy")
                             }
                             
-                            NavigationLink(destination: Text("Terms of Service")) {
-                                SettingsRow(title: "Terms of Service")
-                            }
-                            
-                            Link(destination: URL(string: "https://www.nexus.org.uk/metro")!) {
+                            Button(action: {
+                                // Open Nexus Metro website
+                                if let url = URL(string: "https://www.nexus.org.uk/metro") {
+                                    UIApplication.shared.open(url)
+                                }
+                            }) {
                                 SettingsRow(title: "Nexus Metro Website")
                             }
+                            
+                            Button(action: {
+                                // Open GitHub repo
+                                if let url = URL(string: "https://github.com/yourusername/BetterMetro") {
+                                    UIApplication.shared.open(url)
+                                }
+                            }) {
+                                SettingsRow(title: "GitHub Repository")
+                            }
                         }
+                        
+                        Text("BetterMetro is a community project and is not affiliated with, endorsed by, or connected to Nexus or the Tyne and Wear Metro operators.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                            .padding(.top, 16)
                     }
                     .padding()
                 }
             }
             .padding(.bottom, 90) // Make room for floating tab bar
+        }
+        .onAppear {
+            checkNotificationStatus()
+            isSubscribedToTopics = DisruptionManager.shared.isSubscribedToTopics
+        }
+    }
+    
+    private func checkNotificationStatus() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                isNotificationsAuthorized = settings.authorizationStatus == .authorized
+            }
+        }
+    }
+    
+    private func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            DispatchQueue.main.async {
+                isNotificationsAuthorized = granted
+                if granted {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
+    }
+    
+    private func openAppSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
         }
     }
 }
