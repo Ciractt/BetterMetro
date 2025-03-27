@@ -61,7 +61,7 @@ struct MainFloatingTabBar: View {
     
     private let items = [
         ("Map", "map.fill"),
-        ("Stations", "train.side.front.car"),
+        ("Pop Card", "train.side.front.car"),
         ("Journey", "arrow.triangle.swap"),
         ("Status", "info.circle.fill"),
         ("Settings", "gear")
