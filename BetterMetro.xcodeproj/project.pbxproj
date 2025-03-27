@@ -40,21 +40,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		335C11642D95F29A00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetro" target */ = {
+		335C116E2D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetro" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
 			target = 33CDE96D2D90AD8D0016CE34 /* BetterMetro */;
 		};
-		33CDE9FC2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroTests" target */ = {
+		335C116F2D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetroTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"GoogleService-Info.plist",
 			);
 			target = 33CDE97D2D90AD900016CE34 /* BetterMetroTests */;
 		};
-		33CDE9FD2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroUITests" target */ = {
+		335C11702D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetroUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"GoogleService-Info.plist",
@@ -67,9 +67,9 @@
 		33CDE9702D90AD8D0016CE34 /* BetterMetro */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				335C11642D95F29A00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetro" target */,
-				33CDE9FC2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroTests" target */,
-				33CDE9FD2D90CC850016CE34 /* Exceptions for "BetterMetro" folder in "BetterMetroUITests" target */,
+				335C116E2D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetro" target */,
+				335C116F2D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetroTests" target */,
+				335C11702D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetroUITests" target */,
 			);
 			path = BetterMetro;
 			sourceTree = "<group>";
