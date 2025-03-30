@@ -44,6 +44,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				StationExtension.swift,
 			);
 			target = 33CDE96D2D90AD8D0016CE34 /* BetterMetro */;
 		};
@@ -63,11 +64,22 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		335C11732D9730FC00FE57CB /* Exceptions for "BetterMetro" folder in "Copy Bundle Resources" phase from "BetterMetro" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 33CDE96C2D90AD8D0016CE34 /* Resources */;
+			membershipExceptions = (
+				StationExtension.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		33CDE9702D90AD8D0016CE34 /* BetterMetro */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				335C116E2D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetro" target */,
+				335C11732D9730FC00FE57CB /* Exceptions for "BetterMetro" folder in "Copy Bundle Resources" phase from "BetterMetro" target */,
 				335C116F2D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetroTests" target */,
 				335C11702D95F69F00FE57CB /* Exceptions for "BetterMetro" folder in "BetterMetroUITests" target */,
 			);
@@ -453,13 +465,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BetterMetro/BetterMetro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BetterMetro/Preview Content\"";
 				DEVELOPMENT_TEAM = 8CFHW4VE6V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BetterMetro/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BetterMetro;
+				INFOPLIST_KEY_CFBundleDisplayName = "BetterMetro (Dev)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -470,7 +483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sam.app.BetterMetro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -488,13 +501,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BetterMetro/BetterMetro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BetterMetro/Preview Content\"";
 				DEVELOPMENT_TEAM = 8CFHW4VE6V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BetterMetro/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BetterMetro;
+				INFOPLIST_KEY_CFBundleDisplayName = "BetterMetro (Dev)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -505,7 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sam.app.BetterMetro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
